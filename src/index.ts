@@ -3,7 +3,7 @@ import { articleRoute } from "./modules/article/article.route";
 import { cors } from "hono/cors";
 
 const app = new Hono();
-const v1 = new Hono();
+const api = new Hono({ strict: false });
 
 app.use(
   "*",
@@ -15,10 +15,7 @@ app.use(
   })
 );
 
-app.route("/api/v1", v1);
-app.get("/", (c) => {
-  return c.text("bisa nih broo", 200);
-});
-v1.route("/article", articleRoute);
+api.route("/article", articleRoute);
+app.route("/api/v1", api);
 
 export default app;

@@ -16,6 +16,9 @@ app.use(
 );
 
 app.route("/api/v1", v1);
+app.get("/", (c) => {
+  return c.text("bisa nih broo", 200);
+});
 v1.route("/article", articleRoute);
 
 export default app;
